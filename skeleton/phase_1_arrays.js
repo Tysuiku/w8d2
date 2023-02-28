@@ -1,4 +1,4 @@
-Array.prototype.uniq = function() {
+Array.prototype.uniq = function () {
   const uniqArray = [];
 
   for (let i = 0; i < this.length; i++) {
@@ -9,16 +9,14 @@ Array.prototype.uniq = function() {
     }
   }
 
-  return uniqArray
-}
+  return uniqArray;
+};
 
-
-Array.prototype.twoSum = function() {
+Array.prototype.twoSum = function () {
   const results = [];
 
   for (let i = 0; i < this.length; i++) {
     for (let j = i + 1; j < this.length; j++) {
-
       if (this[i] + this[j] === 0) {
         results.push([i, j]);
       }
@@ -26,24 +24,28 @@ Array.prototype.twoSum = function() {
   }
 
   return results;
-}
+};
 
 // console.log(([1,-1,3,0,-3,0]).twoSum())
 
-
-Array.prototype.transpose = function() {
+Array.prototype.transpose = function () {
   // [[1, 2], [3, 4]] => [[1, 3], [2, 4]]
-  let results = [[],[]];
+  let resultsArr = [];
 
-  for (let i = 0; i < this.length; i++) {
+  for (let i = 0; i < this[0].length; i++) {
+    let resultsRow = [];
     for (let j = 0; j < this.length; j++) {
-      if (i === 0) {
-        results[j].push(this[j][i]);
-      }
+      resultsRow.push(this[j][i]);
     }
+    resultsArr.push(resultsRow);
   }
 
-  return results;
-}
+  return resultsArr;
+};
 
-console.log([[1,2],[3,4]].transpose())
+console.log(
+  [
+    [1, 2, 3, 4],
+    [5, 6, 7, 8],
+  ].transpose()
+);
