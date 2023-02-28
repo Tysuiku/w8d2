@@ -9,18 +9,38 @@ function logElement(ele) {
 }
 
 function square(num) {
-  console.log(num * num);
+  return (num * num);
 }
 
 // [1, 2, 3].myEach(logElement);
 // console.log([1, 2, 3].myEach(square));
 
+
+// without declaring const variable to save results of callback first
 Array.prototype.myMap = function (callback) {
+  // debugger;
   let results = [];
-  function displayResults() {
-    results.push(this.myEach(callback));
-  }
+
+  this.myEach(function(el) {
+    results.push(callback(el))
+  })
+
   return results;
 };
 
-console.log([1, 2, 3].myMap(square));
+// with declaring const variable to save results of callback first
+Array.prototype.myMap = function (callback) {
+  let results = [];
+
+  const callbackToMyEach = function(el) {
+    results.push(callback(el));
+  };
+
+  this.myEach(callbackToMyEach);
+
+  return results;
+}
+
+
+
+// console.log([1, 2, 3].myMap(square));
